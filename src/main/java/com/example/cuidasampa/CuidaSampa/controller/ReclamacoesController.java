@@ -3,6 +3,7 @@ package com.example.cuidasampa.CuidaSampa.controller;
 import com.example.cuidasampa.CuidaSampa.beans.Reclamacoes;
 import com.example.cuidasampa.CuidaSampa.repositorio.ReclamacoesRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -53,9 +54,20 @@ public class ReclamacoesController {
     }
 
     @CrossOrigin
+    @Cacheable("reclamacoesUsuario")
     @RequestMapping(value = "/usuarios/{id}/reclamacoes", method = RequestMethod.GET)
     public @ResponseBody
     List<Reclamacoes> getReclamacoesPorUsuario(@PathVariable("id") Integer id){
+        System.out.println("Clio");
+        return repositorio.getReclamacoesPorUsuario(id);
+    }
+
+    @CrossOrigin
+    @Cacheable("reclamacoesEmpresa")
+    @RequestMapping(value = "/empresas/{id}/reclamacoes", method = RequestMethod.GET)
+    public @ResponseBody
+    List<Reclamacoes> getReclamacoesPorEmpresa(@PathVariable("id") Integer id){
+        System.out.println("Clio");
         return repositorio.getReclamacoesPorUsuario(id);
     }
 

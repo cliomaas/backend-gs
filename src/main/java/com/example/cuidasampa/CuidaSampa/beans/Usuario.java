@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Entity
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
+@JsonIdentityInfo(scope = Usuario.class, generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 @Table(name = "usuario")
 public class Usuario {
 

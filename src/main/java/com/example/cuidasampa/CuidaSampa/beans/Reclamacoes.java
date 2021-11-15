@@ -22,6 +22,9 @@ public class Reclamacoes {
     @ManyToOne
     private Usuario usuario;
 
+    @ManyToOne
+    @JoinColumn(nullable = true, referencedColumnName = "id")
+    private Empresa empresa;
 
     public Reclamacoes() {
     }
@@ -80,5 +83,19 @@ public class Reclamacoes {
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
+    }
+
+    public String getEmpresa() {
+        if (this.empresa != null){
+            return empresa.getNome();
+        }
+        else {
+            return null;
+        }
+
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
     }
 }
