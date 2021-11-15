@@ -54,7 +54,6 @@ public class ReclamacoesController {
     }
 
     @CrossOrigin
-    @Cacheable("reclamacoesUsuario")
     @RequestMapping(value = "/usuarios/{id}/reclamacoes", method = RequestMethod.GET)
     public @ResponseBody
     List<Reclamacoes> getReclamacoesPorUsuario(@PathVariable("id") Integer id){
