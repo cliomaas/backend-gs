@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Scanner;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -41,16 +41,22 @@ public class ReclamacoesController {
     @CrossOrigin
     @RequestMapping(value = "/reclamacoes/{id}", method = RequestMethod.GET)
     public @ResponseBody
-    Reclamacoes filtrar(@PathVariable Integer id) {
-        return repositorio.findByCodigo(id);
+    Optional<Reclamacoes> filtrar(@PathVariable Integer id) {
+        return repositorio.findById(id);
     }
 
     @CrossOrigin
-    @RequestMapping(value = "/reclamacoes/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/reclamacoes/{id}", method = RequestMethod.POST)
+    public void deletar(@PathVariable Integer id) {
+        Optional<Reclamacoes> reclamacoes = filtrar(id);
+        repositorio.deleteById(id);
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = "/usuarios/{id}/reclamacoes", method = RequestMethod.GET)
     public @ResponseBody
-    void remover(@PathVariable Integer id) {
-        Reclamacoes reclamacoes = filtrar(id);
-        this.repositorio.delete(reclamacoes);
+    List<Reclamacoes> getReclamacoesPorUsuario(@PathVariable("id") Integer id){
+        return repositorio.getReclamacoesPorUsuario(id);
     }
 
 }

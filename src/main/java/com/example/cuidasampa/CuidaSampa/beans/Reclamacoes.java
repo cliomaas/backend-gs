@@ -1,43 +1,45 @@
 package com.example.cuidasampa.CuidaSampa.beans;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.List;
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 @Table(name = "reclamacoes")
 public class Reclamacoes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigo;
+    private Integer id;
     private String categoria;
     private LocalDate data;
     private String cep;
     private String obs;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "usuario_id", referencedColumnName = "id")
+    @ManyToOne
     private Usuario usuario;
+
 
     public Reclamacoes() {
     }
 
-    public Reclamacoes(Integer codigo, String categoria, LocalDate data, String cep, String obs, Usuario usuario) {
-        this.codigo = codigo;
+    public Reclamacoes(Integer id, String categoria, LocalDate data, String cep, String obs) {
+        this.id = id;
         this.categoria = categoria;
         this.data = data;
         this.cep = cep;
         this.obs = obs;
-        this.usuario = usuario;
     }
 
-    public Integer getCodigo() {
-        return codigo;
+    public Integer getId() {
+        return id;
     }
 
-    public void setId(Integer codigo) {
-        this.codigo = codigo;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getCategoria() {
@@ -72,12 +74,11 @@ public class Reclamacoes {
         this.obs = obs;
     }
 
-    public Usuario getUsuario() {
-        return usuario;
+    public String getUsuario() {
+        return usuario.getNome();
     }
 
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
 }

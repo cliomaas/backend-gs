@@ -1,11 +1,16 @@
 package com.example.cuidasampa.CuidaSampa.beans;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 
 @Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class,property = "id")
 @Table(name = "usuario")
 public class Usuario {
 
@@ -21,12 +26,12 @@ public class Usuario {
     private String cep;
 
     @OneToMany(mappedBy = "usuario")
-    private List<Reclamacoes> reclamacoes= new ArrayList<>();
+    private List<Reclamacoes> reclamacoes;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String sobrenome, String cpf, String email, String genero, String cep, List<Reclamacoes> reclamacoes) {
+    public Usuario(Integer id, String nome, String sobrenome, String cpf, String email, String genero, String cep) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -34,7 +39,6 @@ public class Usuario {
         this.email = email;
         this.genero = genero;
         this.cep = cep;
-        this.reclamacoes = reclamacoes;
     }
 
     public Integer getId() {
@@ -100,4 +104,5 @@ public class Usuario {
     public void setReclamacoes(List<Reclamacoes> reclamacoes) {
         this.reclamacoes = reclamacoes;
     }
+
 }
