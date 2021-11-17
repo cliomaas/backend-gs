@@ -17,7 +17,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepositorio repositorio;
 
-
     @CrossOrigin
     @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
     public @ResponseBody
@@ -38,8 +37,5 @@ public class UsuarioController {
     Optional<Usuario> filtrar(@PathVariable int id){
         return repositorio.findById(id);
     }
-
-
-
 
 }

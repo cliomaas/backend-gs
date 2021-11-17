@@ -3,6 +3,7 @@ package com.example.cuidasampa.CuidaSampa.controller;
 import com.example.cuidasampa.CuidaSampa.beans.Reclamacoes;
 import com.example.cuidasampa.CuidaSampa.repositorio.ReclamacoesRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,12 +50,11 @@ public class ReclamacoesController {
     @CrossOrigin
     @RequestMapping(value = "/reclamacoes/{id}", method = RequestMethod.POST)
     public void deletar(@PathVariable Integer id) {
-        Optional<Reclamacoes> reclamacoes = filtrar(id);
+//        Optional<Reclamacoes> reclamacoes = filtrar(id);
         repositorio.deleteById(id);
     }
 
     @CrossOrigin
-    @Cacheable("reclamacoesUsuario")
     @RequestMapping(value = "/usuarios/{id}/reclamacoes", method = RequestMethod.GET)
     public @ResponseBody
     List<Reclamacoes> getReclamacoesPorUsuario(@PathVariable("id") Integer id){
@@ -63,12 +63,27 @@ public class ReclamacoesController {
     }
 
     @CrossOrigin
-    @Cacheable("reclamacoesEmpresa")
     @RequestMapping(value = "/empresas/{id}/reclamacoes", method = RequestMethod.GET)
     public @ResponseBody
     List<Reclamacoes> getReclamacoesPorEmpresa(@PathVariable("id") Integer id){
-        System.out.println("Clio");
         return repositorio.getReclamacoesPorUsuario(id);
     }
+
+    @RequestMapping(value = "/status-reclamacao-{id}", method = RequestMethod.GET)
+    @Cacheable("status")
+    public String status(@PathVariable Integer id) {
+        Optional<Reclamacoes> reclamacoes = filtrar(id);
+        System.out.println("Clio Maas");
+        return "Reclamação número" +  " " + reclamacoes.get().getId() + ": Em andamento";
+    }
+
+    @RequestMapping( value = "/cancel")
+    @CacheEvict(value= "status", allEntries = true)
+    public String cancel() {
+        System.out.println("Limpando o cache.");
+        return "Cache cancelado";
+    }
+
+
 
 }

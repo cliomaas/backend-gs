@@ -24,6 +24,7 @@ public class Usuario {
     private String email;
     private String genero;
     private String cep;
+    private String senha;
 
     @OneToMany(mappedBy = "usuario")
     private List<Reclamacoes> reclamacoes;
@@ -31,7 +32,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nome, String sobrenome, String cpf, String email, String genero, String cep) {
+    public Usuario(Integer id, String nome, String sobrenome, String cpf, String email, String genero, String cep, String senha) {
         this.id = id;
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -39,6 +40,7 @@ public class Usuario {
         this.email = email;
         this.genero = genero;
         this.cep = cep;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -95,6 +97,14 @@ public class Usuario {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public List<Reclamacoes> getReclamacoes() {

@@ -25,6 +25,7 @@ public class Empresa {
     private String cep;
     private String cidade;
     private String estado;
+    private String senha;
 
     @OneToMany(mappedBy = "empresa")
     private List<Reclamacoes> reclamacoes;
@@ -32,7 +33,19 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(Integer id, String nome, String cnpj, String email, String site, String numeroFuncionarios, String telefone, String cep, String cidade, String estado) {
+    public Empresa(
+            Integer id,
+            String nome,
+            String cnpj,
+            String email,
+            String site,
+            String numeroFuncionarios,
+            String telefone,
+            String cep,
+            String cidade,
+            String estado,
+            String senha
+    ) {
         this.id = id;
         this.nome = nome;
         this.cnpj = cnpj;
@@ -43,6 +56,7 @@ public class Empresa {
         this.cep = cep;
         this.cidade = cidade;
         this.estado = estado;
+        this.senha = senha;
     }
 
     public Integer getId() {
@@ -123,6 +137,14 @@ public class Empresa {
 
     public void setEstado(String estado) {
         this.estado = estado;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
     public List<Reclamacoes> getReclamacoes() {
