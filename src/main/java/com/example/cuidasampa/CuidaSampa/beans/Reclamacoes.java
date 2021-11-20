@@ -15,21 +15,22 @@ public class Reclamacoes {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String categoria;
-    private LocalDate data;
+    private String data;
     private String cep;
     private String obs;
 
-    @ManyToOne
-    private Usuario usuario;
-
-    @ManyToOne
-    @JoinColumn(nullable = true, referencedColumnName = "id")
-    private Empresa empresa;
+//    @ManyToOne
+//    @JoinColumn(nullable = true, referencedColumnName = "id")
+//    private Usuario usuario;
+//
+//    @ManyToOne
+//    @JoinColumn(nullable = true, referencedColumnName = "id")
+//    private Empresa empresa;
 
     public Reclamacoes() {
     }
 
-    public Reclamacoes(Integer id, String categoria, LocalDate data, String cep, String obs) {
+    public Reclamacoes(Integer id, String categoria, String data, String cep, String obs) {
         this.id = id;
         this.categoria = categoria;
         this.data = data;
@@ -53,11 +54,11 @@ public class Reclamacoes {
         this.categoria = categoria;
     }
 
-    public LocalDate getData() {
+    public String getData() {
         return data;
     }
 
-    public void setData(LocalDate data) {
+    public void setData(String data) {
         this.data = data;
     }
 
@@ -77,25 +78,25 @@ public class Reclamacoes {
         this.obs = obs;
     }
 
-    public String getUsuario() {
-        return usuario.getNome();
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public String getEmpresa() {
-        if (this.empresa != null){
-            return empresa.getNome();
-        }
-        else {
-            return null;
-        }
-
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
+//    public String getUsuario() {
+//        return usuario.getNome();
+//    }
+//
+//    public void setUsuario(Usuario usuario) {
+//        this.usuario = usuario;
+//    }
+//
+//    public String getEmpresa() {
+//        if (this.empresa != null){
+//            return empresa.getNome();
+//        }
+//        else {
+//            return null;
+//        }
+//
+//    }
+//
+//    public void setEmpresa(Empresa empresa) {
+//        this.empresa = empresa;
+//    }
 }

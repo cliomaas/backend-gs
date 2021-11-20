@@ -12,10 +12,10 @@ public interface ReclamacoesRepositorio extends JpaRepository<Reclamacoes, Integ
     @Query(value = "SELECT * FROM Reclamacoes r WHERE r.usuario_id = ?1", nativeQuery = true)
     List<Reclamacoes> getReclamacoesPorUsuario(Integer id);
 
-    @Query(value = "SELECT * FROM Reclamacoes r WHERE r.empresa_id = ?1", nativeQuery = true)
-    List<Reclamacoes> getReclamacoesPorEmpresa(Integer id);
+    @Query(value = "SELECT * FROM Reclamacoes r WHERE r.cep = ?1", nativeQuery = true)
+    List<Reclamacoes> getReclamacoesPorCEP(String cep);
 
-    Optional<Reclamacoes> findById(Integer id);
+
     <ReclamacoesMod extends Reclamacoes>  ReclamacoesMod save(ReclamacoesMod reclamacoes);
 
 }

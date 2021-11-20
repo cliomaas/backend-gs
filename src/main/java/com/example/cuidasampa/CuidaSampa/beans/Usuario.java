@@ -26,8 +26,8 @@ public class Usuario {
     private String cep;
     private String senha;
 
-    @OneToMany(mappedBy = "usuario")
-    private List<Reclamacoes> reclamacoes;
+//    @OneToMany(mappedBy = "usuario")
+//    private List<Reclamacoes> reclamacoes;
 
     public Usuario() {
     }
@@ -107,12 +107,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public List<Reclamacoes> getReclamacoes() {
-        return reclamacoes;
-    }
-
-    public void setReclamacoes(List<Reclamacoes> reclamacoes) {
-        this.reclamacoes = reclamacoes;
-    }
+//    public List<Reclamacoes> getReclamacoes() {
+//        return reclamacoes;
+//    }
+//
+//    public void setReclamacoes(List<Reclamacoes> reclamacoes) {
+//        this.reclamacoes = reclamacoes;
+//    }
 
 }

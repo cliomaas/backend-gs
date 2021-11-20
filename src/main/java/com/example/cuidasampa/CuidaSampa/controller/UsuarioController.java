@@ -18,6 +18,12 @@ public class UsuarioController {
     private UsuarioRepositorio repositorio;
 
     @CrossOrigin
+    @RequestMapping(value= "/usuarios", method= RequestMethod.PUT)
+    public @ResponseBody
+    Usuario alterar(@RequestBody Usuario usuarios)
+    { return repositorio.save(usuarios);}
+
+    @CrossOrigin
     @RequestMapping(value = "/usuarios", method = RequestMethod.POST)
     public @ResponseBody
     Usuario cadastrar(@RequestBody Usuario usuario) {

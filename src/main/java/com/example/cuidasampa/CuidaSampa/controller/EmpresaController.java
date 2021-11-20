@@ -1,6 +1,7 @@
 package com.example.cuidasampa.CuidaSampa.controller;
 
 import com.example.cuidasampa.CuidaSampa.beans.Empresa;
+import com.example.cuidasampa.CuidaSampa.beans.Reclamacoes;
 import com.example.cuidasampa.CuidaSampa.beans.Usuario;
 import com.example.cuidasampa.CuidaSampa.repositorio.EmpresaRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,12 @@ public class EmpresaController {
     @Autowired
     private EmpresaRepositorio repositorio;
 
+
+    @CrossOrigin
+    @RequestMapping(value= "/empresas", method= RequestMethod.PUT)
+    public @ResponseBody
+    Empresa alterar(@RequestBody Empresa empresa)
+    { return repositorio.save(empresa);}
 
     @CrossOrigin
     @RequestMapping(value = "/empresas", method = RequestMethod.POST)

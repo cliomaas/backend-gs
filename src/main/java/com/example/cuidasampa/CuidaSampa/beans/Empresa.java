@@ -27,8 +27,8 @@ public class Empresa {
     private String estado;
     private String senha;
 
-    @OneToMany(mappedBy = "empresa")
-    private List<Reclamacoes> reclamacoes;
+//    @OneToMany(mappedBy = "empresa")
+//    private List<Reclamacoes> reclamacoes;
 
     public Empresa() {
     }
@@ -147,11 +147,11 @@ public class Empresa {
         this.senha = senha;
     }
 
-    public List<Reclamacoes> getReclamacoes() {
-        return reclamacoes;
-    }
-
-    public void setReclamacoes(List<Reclamacoes> reclamacoes) {
-        this.reclamacoes = reclamacoes;
-    }
+//    public List<Reclamacoes> getReclamacoes() {
+//        return reclamacoes;
+//    }
+//
+//    public void setReclamacoes(List<Reclamacoes> reclamacoes) {
+//        this.reclamacoes = reclamacoes;
+//    }
 }
